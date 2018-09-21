@@ -1,6 +1,6 @@
 # tractor 설치법
 
-#### Pixar license 서버설치
+### Pixar license 서버설치
 - 픽사 라이센스 설치파일을 다운로드 합니다. https://renderman.pixar.com/forum/download.php
 - 트렉터 라이센스를 발급 받습니다. : https://renderman.pixar.com/forum/entitlement.php
 ![activation](https://user-images.githubusercontent.com/1149996/45874861-ed7c6580-bdd0-11e8-836a-a619a4875b72.png)
@@ -33,6 +33,6 @@
 # /etc/init.d/pixarlicenseserver restart
 ```
 
-#### Tractor Engine 설치
+### Tractor Engine 설치
 
-#### Tractor Blade 설치
+### Tractor Blade 설치
