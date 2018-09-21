@@ -20,6 +20,10 @@
 # PixarLicenseServer -x pixar.license
 ```
 
-- 서버가 늘 실행될 때 마다 자동으로 실행되기 위해 init.d 설정을 한다.
+- 라이센스 서버를 설치하면 /etc/init.d/pixarlicenseserver 파일이 존재해서 서버가 실행될 때 자동으로 실행된다.
+- 수동으로 서버상태를 변경할 때는 아래 명령어를 사용할 수 있다.
 ```
+# /etc/init.d/pixarlicenseserver start
+# /etc/init.d/pixarlicenseserver stop
+# /etc/init.d/pixarlicenseserver restart
 ```
