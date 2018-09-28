@@ -85,7 +85,7 @@
 # cp tractor-engine /etc/init.d
 ```
 
--설치한 Engine을 시작시 바로 실행될 수 있게 활성화한다.
+- 설치한 Engine을 시작시 바로 실행될 수 있게 활성화한다.
 ```
 # chkconfig tractor-engine on
 ```
