@@ -75,7 +75,7 @@
 
 1. sysVinit
 
-- 첫번째 단계에서는 /opt/pixar/Tractor-x.x/lib/SystemServices/ 경로로 이동하여 작업한다.
+- /opt/pixar/Tractor-x.x/lib/SystemServices/ 경로로 이동하여 작업한다.
 - pixar setting file을 설치한다.
 ```
 # cp pixar /etc/sysconfig
@@ -110,7 +110,7 @@
 
 2. systemd
 
-- 두번째 단계에서는 /opt/pixar/Tractor-x.x/lib/SystemServices/systemd/ 경로로 이동하여 작업한다.
+- systemd  /opt/pixar/Tractor-x.x/lib/SystemServices/systemd/ 경로로 이동하여 작업한다.
 - Engine Unit file을 설치한다.
 ```
 # cp tractor-engine.service /usr/lib/systemd/system
@@ -193,3 +193,92 @@
 ** 로그인 에러 및 service unit start failed 에러는 이슈페이지 참조.
 
 ### Tractor Blade 설치
+
+1. sysVinit
+
+- /opt/pixar/Tractor-x.x/lib/SystemServices/ 경로로 이동하여 작업한다.
+- tractor-engine을 설치한다.
+```
+cp tractor-blade /etc/init.d
+```
+
+- Blade 서비스를 활성화한다.
+```
+chkconfig tractor-blade on
+```
+
+- 활성화한 Blade를 실행시킨다. 마찬가지로 start와 stop으로 조작가능.
+```
+/etc/init.d/tractor-blades start
+```
+
+2. systemd
+
+- systemd  /opt/pixar/Tractor-x.x/lib/SystemServices/systemd/ 경로로 이동하여 작업한다.
+- Blade Unit file을 설치한다.
+```
+# cp tractor-blade.service /usr/lib/systemd/system
+```
+
+- systemd override file을 설치한다. 이 파일은 tractor-blades.service파일에 덮어씌워지는 용도이다.
+- tractor-blade.service.d 폴더를 만들고 이 곳으로 90-tractor-blade-overrides.conf 파일을 복사해준다.
+```
+# mkdir /etc/systemd/system/tractor-blade.service.d && cp 90-tractor-blade-overrides.conf /etc/systemd/system/tractor-blade.service.d
+```
+
+- tractor-blade를 설치한다.
+```
+# cp tractor-blade /etc/sysconfig/tractor-blade
+```
+
+-systemd에 존재하는 blade 서비스를 활성화한다.
+```
+# systemctl enable tractor-blade
+```
+
+- 활성화된 blade를 실행한다. 마찬가지로 start와 stop으로 조작가능.
+```
+# systemctl start tractor-blade
+```
+
+
+-systemctl status tractor-blade를 통해서 blade 활성화 여부 확인 가능.
+```
+[root@mgskorea systemd]# systemctl status tractor-blade
+● tractor-blade.service - Tractor Blade Service
+   Loaded: loaded (/usr/lib/systemd/system/tractor-blade.service; enabled; vendor preset: disabled)
+  Drop-In: /etc/systemd/system/tractor-blade.service.d
+           └─90-tractor-blade-overrides.conf
+   Active: active (running) since 화 2018-10-02 16:32:54 KST; 8s ago
+ Main PID: 7701 (rmanpy)
+    Tasks: 2
+   CGroup: /system.slice/tractor-blade.service
+           └─7701 /opt/pixar/Tractor-2.2/bin/rmanpy -m tractor.apps.blade --pythonhome=None --dyld_framework_path=None --ld_librar...
+	  
+10월 02 16:32:57 mgskorea bash[7701]: 10/02 16:32:57 INFO    HostUUID: f161d5d18e844ad4b261d261bbbcd4b6
+10월 02 16:32:57 mgskorea bash[7701]: 10/02 16:32:57 INFO    RAM:  8 GB
+10월 02 16:32:57 mgskorea bash[7701]: 10/02 16:32:57 INFO    CPUs: 8
+10월 02 16:32:57 mgskorea bash[7701]: 10/02 16:32:57 INFO    GPU:  GF104 [GeForce GTX 460]; NVIDIA Corporation (1)
+10월 02 16:32:57 mgskorea bash[7701]: 10/02 16:32:57 INFO    engine = tractor-engine:80
+10월 02 16:32:57 mgskorea bash[7701]: 10/02 16:32:57 DEBUG   initializing TrEnvHandler: default
+10월 02 16:32:57 mgskorea bash[7701]: 10/02 16:32:57 DEBUG   initializing setenvhandler: setenvhandler
+10월 02 16:32:57 mgskorea bash[7701]: 10/02 16:32:57 DEBUG   initializing TrEnvHandler: setenvhandler
+10월 02 16:32:57 mgskorea bash[7701]: 10/02 16:32:57 DEBUG   begin main event loop
+10월 02 16:32:57 mgskorea bash[7701]: 10/02 16:32:57 DEBUG   requesting tractor-engine:80/blade.config
+```
+
+-journalctl -flu tractor-blade를 통해서 blade 로그를 확인 가능.
+```
+[root@mgskorea systemd]# journalctl -flu tractor-blade
+-- Logs begin at 수 2018-10-03 00:02:32 KST. --
+10월 02 16:33:11 mgskorea bash[7701]: 10/02 16:33:11 DEBUG   initializing rfmtreehandler: rfmtreehandler
+10월 02 16:33:11 mgskorea bash[7701]: 10/02 16:33:11 DEBUG   initializing TrEnvHandler: rfmtreehandler
+10월 02 16:33:11 mgskorea bash[7701]: 10/02 16:33:11 DEBUG   initializing mayahandler: mayahandler
+10월 02 16:33:11 mgskorea bash[7701]: 10/02 16:33:11 DEBUG   initializing TrEnvHandler: mayahandler
+10월 02 16:33:11 mgskorea bash[7701]: 10/02 16:33:11 DEBUG   initializing setenvhandler: setenvhandler
+10월 02 16:33:11 mgskorea bash[7701]: 10/02 16:33:11 DEBUG   initializing TrEnvHandler: setenvhandler
+10월 02 16:33:11 mgskorea bash[7701]: 10/02 16:33:11 INFO    initializing site status filters
+10월 02 16:33:11 mgskorea bash[7701]: 10/02 16:33:11 INFO    Begin service as Profile: Linux64
+10월 02 16:33:11 mgskorea bash[7701]: 10/02 16:33:11 INFO    max slots = 1 (on 8 CPUs)
+10월 02 16:33:14 mgskorea bash[7701]: 10/02 16:33:14 INFO    beginning requests for work
+```
