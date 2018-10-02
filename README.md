@@ -134,23 +134,56 @@
 # systemctl stop tractor-engine
 ```
 
-- systemd 서비스의 로그는 journald를 이용해 확인이 가능하다.
+- Engine 로그는 journald를 이용해 확인이 가능하다.
 ```
 # journaldctl --since today -u tractor-engine
 ```
 
 - 정상적인 메세지는 다음과 같다.
 ```
- 9월 28 18:17:10 mgskorea systemd[1]: Started Tractor Engine Service.
- 9월 28 18:17:10 mgskorea systemd[1]: Starting Tractor Engine Service...
- 9월 28 18:17:10 mgskorea bash[14312]: 09/28 18:17:10 TIMESTAMP 2018-09-28 pid=14312  (logging begins)
- 9월 28 18:17:10 mgskorea bash[14312]: 09/28 18:17:10 NOTICE Tractor 2.2 (Feb 15 2017 11:38:27 1715407 linux-ix86-64-gcc44icc150-release)
- 9월 28 18:17:10 mgskorea bash[14312]: 09/28 18:17:10 NOTICE tractor-engine start, pid=14312 mgskorea
- 9월 28 18:17:10 mgskorea bash[14312]: 09/28 18:17:10 INFO   application dir: /opt/pixar/Tractor-2.2
- 9월 28 18:17:10 mgskorea bash[14312]: 09/28 18:17:10 INFO   config file dir: /opt/pixar/Tractor-2.2/config
- 9월 28 18:17:10 mgskorea bash[14312]: 09/28 18:17:10 INFO   data dir:        /var/spool/tractor
- 9월 28 18:17:10 mgskorea bash[14312]: 09/28 18:17:10 INFO   dashboard root:  /opt/pixar/Tractor-2.2/lib/website
- 9월 28 18:17:10 mgskorea bash[14312]: 09/28 18:17:10 INFO   cmd-log dir:     /var/spool/tractor/cmd-logs
+10월 02 15:31:09 mgskorea systemd[1]: Started Tractor Engine Service.
+10월 02 15:31:09 mgskorea systemd[1]: Starting Tractor Engine Service...
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 TIMESTAMP 2018-10-02 pid=5425  (logging begins)
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 NOTICE Tractor 2.2 (Feb 15 2017 11:38:27 1715407 linux-ix86-64-gcc44icc150-relea
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 NOTICE tractor-engine start, pid=5425 mgskorea
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 INFO   application dir: /opt/pixar/Tractor-2.2
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 INFO   config file dir: /opt/pixar/Tractor-2.2/config
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 INFO   data dir:        /var/spool/tractor
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 INFO   dashboard root:  /opt/pixar/Tractor-2.2/lib/website
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 INFO   cmd-log dir:     /var/spool/tractor/cmd-logs
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 INFO   cmd log fetch: /tractor/cmd-logs/%u/J%j/T%t.log
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 INFO   license: /opt/pixar/Tractor-2.2/../pixar.license
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 INFO   tuning: iot=16  udi=50,5,4 stats=40,15,0  fdmax=500000
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 INFO   scheduling base: P+FIFO
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 DEBUG  preparing tcp listener on port 80
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 NOTICE listening on tcp port 80
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 DEBUG  preparing udp listener on port 80
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 NOTICE listening on udp port 80
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 NOTICE engine operating login: 'mgskorea'
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 INFO   engine discovery service, @:80
+10월 02 15:31:09 mgskorea bash[5425]: 10/02 15:31:09 INFO   launching /opt/pixar/Tractor-2.2/bin/tractor-dbctl
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 NOTICE dbctl ok, rc=0 (dbpid=5507)  Initializing postgres database directory /va
+10월 02 15:31:20 mgskorea bash[5425]: Starting postgres server on the data directory /var/spool/tractor/psql and on port 9876.
+10월 02 15:31:20 mgskorea bash[5425]: Building tractor database.
+10월 02 15:31:20 mgskorea bash[5425]: Upgrading database schema from version 2.2-4 to version 2.2-4.
+10월 02 15:31:20 mgskorea bash[5425]: Applying upgrade 1 of 4: Drop all views.
+10월 02 15:31:20 mgskorea bash[5425]: Applying upgrade 2 of 4: Drop all functions.
+10월 02 15:31:20 mgskorea bash[5425]: Applying upgrade 3 of 4: Create all views.
+10월 02 15:31:20 mgskorea bash[5425]: Applying upgrade 4 of 4: Create all functions.
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 DEBUG  database: host=localhost:9876 db=tractor
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 SEVERE code 10001:  gethostbyname Unknown host name
+10월 02 15:31:20 mgskorea bash[5425]: license source: 9010@MGSKOREA
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 NOTICE launch cmd-log server: pid = 5554
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 INFO   loading /opt/pixar/Tractor-2.2/config/crews.config
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 DEBUG  valid logins: native system logins + 0 enumerated
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 DEBUG  password validator: (not enabled)
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 DEBUG  scanning prior user sessions
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 DEBUG  recently active user accounts found: 0
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 INFO   loading /opt/pixar/Tractor-2.2/config/blade.config
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 INFO   loading /opt/pixar/Tractor-2.2/config/limits.config
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 DEBUG  thread start: status-antenna
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 INFO   job queue rescan:  nvis=0 (0.002s)
+10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 INFO   job queue load:  runnable subset=0 (0.000s)
 ```
 
 
