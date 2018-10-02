@@ -231,7 +231,7 @@ chkconfig tractor-blade on
 # cp tractor-blade /etc/sysconfig/tractor-blade
 ```
 
--systemd에 존재하는 blade 서비스를 활성화한다.
+- systemd에 존재하는 blade 서비스를 활성화한다.
 ```
 # systemctl enable tractor-blade
 ```
@@ -242,7 +242,7 @@ chkconfig tractor-blade on
 ```
 
 
--systemctl status tractor-blade를 통해서 blade 활성화 여부 확인 가능.
+- systemctl status tractor-blade를 통해서 blade 활성화 여부 확인 가능.
 ```
 [root@mgskorea systemd]# systemctl status tractor-blade
 ● tractor-blade.service - Tractor Blade Service
@@ -267,7 +267,7 @@ chkconfig tractor-blade on
 10월 02 16:32:57 mgskorea bash[7701]: 10/02 16:32:57 DEBUG   requesting tractor-engine:80/blade.config
 ```
 
--journalctl -flu tractor-blade를 통해서 blade 로그를 확인 가능.
+- journalctl -flu tractor-blade를 통해서 blade 로그를 확인 가능.
 ```
 [root@mgskorea systemd]# journalctl -flu tractor-blade
 -- Logs begin at 수 2018-10-03 00:02:32 KST. --
