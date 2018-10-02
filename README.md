@@ -71,6 +71,7 @@
 
 ### Tractor Engine 설치
 - Engine 설치는 /opt/pixar/Tractor-x.x/에 설치된 파일들을 알맞은 위치로 이동시켜주고 실행시키는 작업을 한다.
+- 아래 두가지 방법 중 하나를 선택해서 설치하되 blade도 같은 방법으로 설치해준다.
 
 1. sysVinit
 
@@ -106,7 +107,9 @@
 # service --status-all|grep tractor
 ```
 
+
 2. systemd
+
 - 두번째 단계에서는 /opt/pixar/Tractor-x.x/lib/SystemServices/systemd/ 경로로 이동하여 작업한다.
 - Engine Unit file을 설치한다.
 ```
@@ -133,6 +136,8 @@
 # systemctl start tractor-engine
 # systemctl stop tractor-engine
 ```
+
+
 
 - Engine 로그는 journald를 이용해 확인이 가능하다.
 ```
@@ -185,6 +190,6 @@
 10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 INFO   job queue rescan:  nvis=0 (0.002s)
 10월 02 15:31:20 mgskorea bash[5425]: 10/02 15:31:20 INFO   job queue load:  runnable subset=0 (0.000s)
 ```
-
+** 로그인 에러 및 service unit start failed 에러는 이슈페이지 참조.
 
 ### Tractor Blade 설치
