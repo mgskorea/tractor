@@ -73,7 +73,7 @@
 - Engine 설치는 /opt/pixar/Tractor-x.x/에 설치된 파일들을 알맞은 위치로 이동시켜주고 실행시키는 작업을 한다.
 - 아래 두가지 방법 중 하나를 선택해서 설치하되 blade도 같은 방법으로 설치해준다.
 
-####1. sysVinit
+1. sysVinit
 
 - /opt/pixar/Tractor-x.x/lib/SystemServices/ 경로로 이동하여 작업한다.
 - pixar setting file을 설치한다.
