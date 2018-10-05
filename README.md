@@ -194,6 +194,20 @@
 
 ### Tractor Blade 설치
 
+0. Engine host 연결
+
+- engine이 설치된 PC와 blade가 설치된 PC가 서로 다를때 사용한다.
+- /etc/hosts 파일을 연다.
+```
+vi /etc/hosts
+```
+
+- 다음 항목에 맞춰 alias를 추가하고 저장해준다.
+- Tractor-Engine-ip-address / tractor-engine-hostname / alias-for-the-name
+```
+123.123.123.123 tractor-server tractor-engine
+```
+
 1. sysVinit
 
 - /opt/pixar/Tractor-x.x/lib/SystemServices/ 경로로 이동하여 작업한다.
