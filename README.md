@@ -1,7 +1,12 @@
 # tractor 설치법
+###
+- 픽사 트랙터 설치파일과 라이센스 설치파일을 다운로드 합니다. https://renderman.pixar.com/forum/download.php
+```
+# rpm -i (설치 파일 이름.rpm)
+```
 
 ### Pixar license 서버설치
-- 픽사 라이센스 설치파일을 다운로드 합니다. https://renderman.pixar.com/forum/download.php
+
 - 트렉터 라이센스를 발급 받습니다. : https://renderman.pixar.com/forum/entitlement.php
 ![activation](https://user-images.githubusercontent.com/1149996/45874861-ed7c6580-bdd0-11e8-836a-a619a4875b72.png)
     - Hostname은 `hostname` 명령어로 알아 낼 수 있습니다.
@@ -193,7 +198,7 @@
 ** 로그인 에러 및 service unit start failed 에러는 이슈페이지 참조.
 
 ### Tractor Blade 설치
-
+* 다른 PC에 설치할 경우, Tractor 설치 파일 다운로드받아 설치해야함!
 0. Engine host 연결
 
 - engine이 설치된 PC와 blade가 설치된 PC가 서로 다를때 사용한다.
